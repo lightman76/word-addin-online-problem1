@@ -1,0 +1,21 @@
+Project that demonstrates a bug I'm encountering building an office JS add-in.  
+It works as expected on Word desktop client, but fails silently in Word online.
+
+To run this project:
+
+   * npm install
+   * npm run start
+   * npm run sideload (to launch the desktop word version)
+   * To test the online version, sign into your office online account
+      * Insert->Office Add-ins and click Upload My Add-in in the upper right 
+        and choose the manifest.xml file in the project
+      * In a separate tab navigate to https://localhost:3000/index.html?et=
+        - this will fail to load due to the self signed cert - accept the cert
+   * load the add-in, click the button to open the sidebar, and in the sidebar 
+     click the big Run link.
+
+It should insert a new page at the end of the document with the heading of 
+"Works Cited", a content control (with the text "loading bibliography"), 
+and finally a message after the content control saying "Bibliography 
+managed by ACME add-on"
+
