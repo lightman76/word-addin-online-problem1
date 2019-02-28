@@ -29,12 +29,15 @@ async function run() {
     pageTitleParagraph.alignment = Word.Alignment.centered;
     var bibRange = pageTitleParagraph.getRange(Word.RangeLocation.after);
     var bibContentControl = bibRange.insertContentControl();
-    bibContentControl.cannotDelete = false;
     bibContentControl.title = "Bibliography managed via add-on";
     bibContentControl.tag = "BibliographyControlTag";
     bibContentControl.placeholderText = "Use the add-on to manage your bibliography.";
-    bibContentControl.insertText("...loading...",Word.InsertLocation.end);
+    bibContentControl.insertText("...loading bibliography...",Word.InsertLocation.end);
     bibContentControl.cannotEdit = true;
+    var marketingText = bibRange.insertParagraph("",Word.InsertLocation.after);
+    var marketingTextRange = bibRange.getRange(Word.RangeLocation.whole);
+    marketingTextRange.insertHtml("<div style='color: #666666; font-size: 10pt;'>"+
+        "Bibliography managed by ACME add-on</div>", Word.InsertLocation.after);
 
     return context.sync().then(function(){
       console.log("Successfully synced");
